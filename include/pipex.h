@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:29:07 by pecastro          #+#    #+#             */
-/*   Updated: 2025/08/31 09:55:20 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/08/31 11:51:33 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PIPEX_H
@@ -35,17 +35,17 @@ extern char **environ;
 
 //main
 int		main(int argc, char **argv);
-char	ft_contains_words(char *str);
+//ft_paths
 char	**ft_complete_paths(char *cmd);
 char	**ft_paths_from_environ(void);
-char	*ft_access_paths(char **complete_paths);
+int		ft_access_paths(t_pipex *pipex);
+char	ft_contains_words(char *str);
+int		ft_size_arr(char **arr);
 //ft_processes
 int		ft_processes(t_pipex *pipex);
 int		ft_children(t_pipex *pipex);
 void	ft_process1(t_pipex *pipex);
 void	ft_process2(t_pipex *pipex);
-//ft_utils
-int	ft_size_arr(char **arr);
 //ft_clean
 void	ft_clean_arr_partial(int index, char **arr);
 void	ft_clean_arr(char **arr);

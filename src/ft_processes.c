@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:05:11 by pecastro          #+#    #+#             */
-/*   Updated: 2025/08/31 10:28:18 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/08/31 11:54:11 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex.h"
@@ -40,6 +40,8 @@ int	ft_children(t_pipex *pipex)
 	pipex->fd_f[1] = open(pipex->file[1], O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (pipex->fd_f[1] == -1)
 		return (perror("Error: open()"), 1);
+	if (ft_access_paths(pipex) > 0)
+		return (1);
 	if (pipe(pipex->fd) == -1)
 		return (perror("Error: pipe()"), 1);
 	pipex->pid[0] = fork();
