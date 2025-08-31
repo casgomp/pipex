@@ -9,8 +9,8 @@ LIBFT_DIR = lib/libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
 SRCS = main.c \
+	   ft_paths.c \
 	   ft_processes.c \
-	   ft_utils.c \
 	   ft_clean.c
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
