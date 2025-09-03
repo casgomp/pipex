@@ -25,8 +25,11 @@ Its behavior should be equivalent to: `< infile grep a1 | wc -w > outfile`
 
 ### Learning process:
 Key things learned from this project:
-
-- .
+- Unix processes.
+- Forking processes and executing commands with execve.
+- Using pipes to communicate between processes.
+- Environment variables. Most importantly PATH, that the system searches for paths of commands to be executed.
+- Shell behavior.
 
 ### Useful sources:
 These video tutorials about [Unix processes in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY) was very helpful.
