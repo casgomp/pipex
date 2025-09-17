@@ -32,4 +32,5 @@ Key things learned from this project:
 - Shell behavior.
 
 ### Useful sources:
-These video tutorials about [Unix processes in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY) was very helpful.
+- These video tutorials about [Unix processes in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY).
+- The [GNU bash manual's section on redirections](https://www.gnu.org/software/bash/manual/html_node/Redirections.html).
