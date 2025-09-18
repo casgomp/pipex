@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 14:03:21 by pecastro          #+#    #+#             */
-/*   Updated: 2025/09/17 22:26:36 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:42:26 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex_bonus.h"
@@ -58,47 +58,39 @@ int	main(int argc, char **argv)
 	return (ft_free(i - 1, &pipex), status_code);
 }
 
-int	ft_pipex_init(t_pipex *pipex)//2 functions: 1.alloc, 2.free (if exists, free).
+int	ft_pipex_init(t_pipex *pipex)
 {
 	pipex->cmd = malloc(sizeof(char **) * pipex->cmd_count);
 	if (!pipex->cmd)
 		return (1);
 	pipex->cmd_rel = malloc(sizeof(char *) * pipex->cmd_count);
 	if (!pipex->cmd_rel)
-		return (free (pipex->cmd), 1);
+		return (ft_pipex_init_free(pipex, 1), 1);
 	pipex->complete_paths = malloc(sizeof(char **) * pipex->cmd_count);
 	if (!pipex->complete_paths)
-	{
-		free (pipex->cmd);
-		free (pipex->cmd_rel);
-		return (1);
-	}
+		return (ft_pipex_init_free(pipex, 2), 1); 
 	pipex->path = malloc(sizeof(char *) * pipex->cmd_count); 
 	if (!pipex->path)
-	{
-		free (pipex->cmd);
-		free (pipex->cmd_rel);
-		free (pipex->complete_paths);
-		return (1);
-	}
+		return (ft_pipex_init_free(pipex, 3), 1);
 	pipex->pid = malloc(sizeof(int) * pipex->cmd_count);
 	if (!pipex->pid)
-	{
-		free (pipex->cmd);
-		free (pipex->cmd_rel);
-		free (pipex->complete_paths);
-		free (pipex->path);
-		return (1);
-	}
+		return (ft_pipex_init_free(pipex, 4), 1);
 	pipex->fd = malloc(sizeof(int[2]) * (pipex->cmd_count - 1));
 	if (!pipex->fd)
-	{
-		free (pipex->cmd);
-		free (pipex->cmd_rel);
-		free (pipex->complete_paths);
-		free (pipex->path);
-		free (pipex->pid);
-		return (1);
-	}
+		return (ft_pipex_init_free(pipex, 5), 1);
 	return (0);
+}
+
+void	ft_pipex_init_free(t_pipex *pipex, int index)
+{
+	if (index >= 1)
+		free (pipex->cmd);
+	if (index >= 2)
+	 	free (pipex->cmd_rel);
+	if (index >= 3)
+		free (pipex->complete_paths);
+	if (index >= 4)
+		free (pipex->path);
+	if (index >= 5)
+		free (pipex->pid);
 }

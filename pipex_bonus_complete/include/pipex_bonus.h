@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:29:07 by pecastro          #+#    #+#             */
-/*   Updated: 2025/09/17 22:29:59 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:40:34 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PIPEX_BONUS_H
@@ -42,6 +42,7 @@ extern char	**environ;
 //main
 int		main(int argc, char **argv);
 int		ft_pipex_init(t_pipex *pipex);
+void	ft_pipex_init_free(t_pipex *pipex, int index);
 //ft_paths
 char	**ft_complete_paths(t_pipex *pipex, int index_cmd);
 char	**ft_paths_from_environ(void);
