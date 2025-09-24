@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:05:11 by pecastro          #+#    #+#             */
-/*   Updated: 2025/09/24 09:30:09 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:36:00 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex_bonus.h"
@@ -68,8 +68,7 @@ int	ft_children(t_pipex *pipex)
 		pipex->fd_f[1] = open(pipex->file[1], O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (pipex->fd_f[1] == -1)
 		return (perror("Error: open()"), EXIT_FAILURE);
-	if (ft_access_paths(pipex) > 0)
-		return (1);
+	ft_access_paths(pipex);
 	i = 0;
 	while (i < pipex->cmd_count - 1)
 	{
@@ -118,8 +117,16 @@ void	ft_process(t_pipex *pipex, int index)
 	}
 	close(pipex->fd_f[0]);
 	close(pipex->fd_f[1]);
-	execve(pipex->path[index], pipex->cmd[index], environ);
-	perror("Error: execve()");
+	if (pipex->path[index])
+	{
+		execve(pipex->path[index], pipex->cmd[index], environ);
+		perror("Error: execve()");
+	}
+	else
+	{
+		close(STDOUT_FILENO);
+		ft_dprintf(2, "Command not found: %s\n", pipex->cmd[index][0]);
+	}
 	ft_free(pipex->cmd_count - 1, pipex);
 	exit (1);
 }
