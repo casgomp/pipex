@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 11:48:10 by pecastro          #+#    #+#             */
-/*   Updated: 2025/09/24 09:03:29 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:17:18 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex_bonus.h"
@@ -62,7 +62,7 @@ int	ft_access_paths(t_pipex *pipex)
 	if (!flag)
 		return (1);
 	i = 0;
-	while (i < pipex->cmd_count)
+	while (i < pipex->cmd_count) //memset?
 	{
 		flag[i] = 1;
 		i ++;
@@ -82,7 +82,7 @@ int	ft_access_paths(t_pipex *pipex)
 			j ++;
 		}
 		if (flag[i])
-			perror("Error: access()");
+			pipex->path[i] = NULL;
 		sum_flag += flag[i];
 		i ++;
 	}
