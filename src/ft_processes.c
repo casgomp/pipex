@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:05:11 by pecastro          #+#    #+#             */
-/*   Updated: 2025/08/31 11:54:11 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/09/22 15:59:45 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex.h"
@@ -15,9 +15,9 @@ int	ft_processes(t_pipex *pipex)
 {
 	int		wstatus[2];
 	int		status_code;
-	
-	if (ft_children(pipex) == 1)
-		return (1);
+
+	if (ft_children(pipex) > 0)
+		return (EXIT_FAILURE);
 	close (pipex->fd_f[0]);
 	close (pipex->fd_f[1]);
 	close (pipex->fd[0]);
@@ -36,12 +36,12 @@ int	ft_children(t_pipex *pipex)
 {
 	pipex->fd_f[0] = open(pipex->file[0], O_RDONLY);
 	if (pipex->fd_f[0] == -1)
-		return (perror("Error: open()"), 1);
+		return (perror("Error: open()"), EXIT_FAILURE);
 	pipex->fd_f[1] = open(pipex->file[1], O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	if (pipex->fd_f[1] == -1)
-		return (perror("Error: open()"), 1);
+		return (perror("Error: open()"), EXIT_FAILURE);
 	if (ft_access_paths(pipex) > 0)
-		return (1);
+		return (EXIT_FAILURE);
 	if (pipe(pipex->fd) == -1)
 		return (perror("Error: pipe()"), 1);
 	pipex->pid[0] = fork();

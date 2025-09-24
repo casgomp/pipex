@@ -6,7 +6,7 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 11:48:10 by pecastro          #+#    #+#             */
-/*   Updated: 2025/08/31 11:54:18 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/08/31 12:05:19 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex.h"
@@ -24,7 +24,7 @@ char	**ft_complete_paths(char *cmd)
 	path_count = ft_size_arr(path_raw_arr);
 	paths = malloc(sizeof(char *) * (path_count + 1));
 	if (!paths)
-		return(ft_clean_arr(path_raw_arr), NULL);
+		return (ft_clean_arr(path_raw_arr), NULL);
 	i = 0;
 	while (path_raw_arr[i])
 	{
@@ -71,7 +71,7 @@ int	ft_access_paths(t_pipex *pipex)
 			{
 				pipex->path[i] = pipex->complete_paths[i][j];
 				flag[i] = 0;
-				break;
+				break ;
 			}
 			j ++;
 		}
@@ -84,7 +84,7 @@ int	ft_access_paths(t_pipex *pipex)
 
 char	ft_contains_words(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -103,5 +103,5 @@ int	ft_size_arr(char **arr)
 	i = 0;
 	while (arr[i])
 		i ++;
-	return (i);	
+	return (i);
 }

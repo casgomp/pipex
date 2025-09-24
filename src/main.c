@@ -6,10 +6,10 @@
 /*   By: pecastro <pecastro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 14:03:21 by pecastro          #+#    #+#             */
-/*   Updated: 2025/08/31 11:48:46 by pecastro         ###   ########.fr       */
+/*   Updated: 2025/09/22 15:58:13 by pecastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-# include "pipex.h" 
+#include "pipex.h" 
 
 int	main(int argc, char **argv)
 {
@@ -18,11 +18,11 @@ int	main(int argc, char **argv)
 	int		status_code;
 
 	if (argc != 5)
-		return(ft_dprintf(STDERR_FILENO, "./pipex file1 cmd1 cmd2 file2\n"), 1);
+		return (ft_dprintf(STDERR_FILENO, "./pipex file1 cmd1 cmd2 file2\n"), EXIT_FAILURE);
 	pipex.file[0] = argv[1];
 	pipex.file[1] = argv[argc - 1];
 	if (!ft_contains_words(argv[2]) || !ft_contains_words(argv[3]))
-			return(ft_dprintf(STDERR_FILENO, "Error: empty command\n"), 1);
+		return (ft_dprintf(STDERR_FILENO, "Error: empty command\n"), EXIT_FAILURE);
 	i = 0;
 	while (i < argc - 3)
 	{
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		pipex.cmd_rel[i] = ft_strjoin("/", pipex.cmd[i][0]);
 		pipex.complete_paths[i] = ft_complete_paths(pipex.cmd_rel[i]);
 		if (!pipex.complete_paths[i])
-			return (ft_free(i, &pipex), 1);
+			return (ft_free(i, &pipex), EXIT_FAILURE);
 		i ++;
 	}
 	status_code = ft_processes(&pipex);
