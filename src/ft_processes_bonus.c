@@ -123,8 +123,8 @@ void	ft_process(t_pipex *pipex, int index)
 		perror("Error: execve()");
 	}
 	else
-	{
-		close(STDOUT_FILENO);
+	{  	//should also close(STDIN_FILENO) for proper bash behavior? for SIGPIPE upstream.
+		close(STDOUT_FILENO); 
 		ft_dprintf(2, "Command not found: %s\n", pipex->cmd[index][0]);
 	}
 	ft_free(pipex->cmd_count - 1, pipex);
