@@ -23,6 +23,9 @@ Its behavior should be equivalent to: `< infile ls -l | wc -l > outfile`
 
 Its behavior should be equivalent to: `< infile grep a1 | wc -w > outfile`
 
+### Bonus part:
+The bonus files (see src dir) handles multiple pipes, and supports « and » when the first parameter is "here_doc". The bonus program works well but I did it only as a transition exercise for the follow-up project, Minishell. So for a much more complete, and better resolved project see the Minishell repo.
+
 ### Learning process:
 Key things learned from this project:
 - Unix processes.
